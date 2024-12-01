@@ -16,3 +16,22 @@ while x < len(a):
     difference += abs(a[x]-b[x])
     x += 1 
 print(difference)
+
+#part 2
+f = open('code')
+
+right = []
+left = []
+for line in f:
+    split = line.strip().split(' ')
+    right.append(int(split[3]))
+    left.append(int(split[0]))
+    
+simmilarity = 0
+
+x = 0
+while x < len(right):
+    a = left.count(right[x])
+    simmilarity += right[x] * a
+    x += 1 
+print(simmilarity)
