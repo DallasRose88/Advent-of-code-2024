@@ -6,15 +6,12 @@ for line in f:
     for inst in split:
         x = len(inst)-1
         while x >= 0:
-            if inst[x]=='(':
-                if inst[x-1]=='l':
-                    if inst[x-2]=='u':
-                        if inst[x-3]=='m':
-                            a=(inst[x+1:])
-                            num =a.split(',')
-                            if len(num)== 2 and num[0].isdigit() and num[1].isdigit():
-                                multiples += (int(num[0])*int(num[1]))
-                            break
+            if inst[x]=='(' and inst[x-1]=='l'and inst[x-2]=='u'and inst[x-3]=='m':
+                a=(inst[x+1:])
+                num =a.split(',')
+                if len(num)== 2 and num[0].isdigit() and num[1].isdigit():
+                    multiples += (int(num[0])*int(num[1]))
+                break
 
                  
             x -=1
