@@ -11,8 +11,29 @@ for line in f:
                 num =a.split(',')
                 if len(num)== 2 and num[0].isdigit() and num[1].isdigit():
                     multiples += (int(num[0])*int(num[1]))
-                break
+                break     
+            x -=1
+print(multiples)
 
-                 
+#part 2
+f = open('trial')
+
+multiples = 0
+dont=0
+for line in f:
+    split = line.split(')')
+    for inst in split:
+        x = len(inst)-1
+        while x >= 0:
+            if inst[x] == '(' and inst[x-1] == 't' and inst[x-2]=='\'' and inst[x-3]=='n' and inst[x-4] == 'o' and inst[x-5]=='d':
+                dont += 1
+            if inst[x] == '(' and inst[x-1] == 'o' and inst[x-2] == 'd':
+                dont = 0
+            if dont == 0 and inst[x]=='(' and inst[x-1]=='l'and inst[x-2]=='u'and inst[x-3]=='m':
+                a=(inst[x+1:])
+                num =a.split(',')
+                if len(num)== 2 and num[0].isdigit() and num[1].isdigit():
+                    multiples += (int(num[0])*int(num[1]))
+                break    
             x -=1
 print(multiples)
