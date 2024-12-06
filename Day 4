@@ -28,3 +28,25 @@ for index, line in enumerate(content):
             if content[index-142] == 'M'and content[index-284] == 'A' and content[index-426] == 'S':
                 xmas += 1
 print(xmas)
+
+#part 2
+f = open('code')
+
+content = f.read()
+xmas = 0 
+
+for index, line in enumerate(content):
+    if line == 'M':
+        if index + 284 <= len(content):
+            if content[index+2] == 'M'and content[index+142] == 'A' and content[index+282] == 'S' and content[index+284] == 'S':
+                xmas += 1
+        if index + 284 <= len(content):
+            if content[index+282] == 'M'and content[index+142] == 'A' and content[index+2] == 'S' and content[index+284]== 'S':
+                xmas += 1
+        if index + 282 <= len(content) and index -2 >= 0:
+            if content[index+282] == 'M'and content[index+140] == 'A' and content[index+280] == 'S' and content[index -2] == 'S':
+                xmas += 1
+        if index - 282 >= 0 and index +2 <= len(content):
+            if content[index+2] == 'M' and content[index-140] == 'A' and content[index-280] == 'S'and content[index-282]=='S':
+                xmas += 1
+print(xmas)
