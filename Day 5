@@ -1,0 +1,31 @@
+f = open('rules')
+
+first =[]
+second =[]
+for line in f:
+    split = line.strip().split('|')
+    first.append(split[0])
+    second.append(split[1])
+f.close()
+f = open('pages')
+
+pages_ready = 0
+for line in f:
+    split = line.strip().split(',')
+    count = 0
+    for x in split:
+        indices = [i for i in range(len(first)) if first[i] == x]
+        correct = 0
+        for num in indices:
+            if second[num] in split:
+                a = (split.index(second[num]))
+                if split.index(x) < a:
+                    correct += 1 
+            else:
+                correct += 1 
+        if correct == len(indices):
+            count += 1 
+    if count == len(split):
+        half = len(split)//2
+        pages_ready += int(split[half])
+print(pages_ready)
