@@ -10,22 +10,35 @@ f.close()
 f = open('pages')
 
 pages_ready = 0
+fixed = 0
 for line in f:
     split = line.strip().split(',')
     count = 0
     for x in split:
         indices = [i for i in range(len(first)) if first[i] == x]
         correct = 0
+        incorrect = 0
+        new = split
         for num in indices:
             if second[num] in split:
                 a = (split.index(second[num]))
                 if split.index(x) < a:
                     correct += 1 
+                else:
+                    incorrect = x
+                    a = split.index(second[num])
+                    b= split.index(x)
+                    new.pop(b)
+                    new.insert(a,x)
             else:
                 correct += 1 
         if correct == len(indices):
-            count += 1 
+            count += 1
+    half = len(split)//2 
     if count == len(split):
-        half = len(split)//2
         pages_ready += int(split[half])
-print(pages_ready)
+    else:
+        fixed += int(split[half])
+print('Part1',pages_ready)
+print('Part2', fixed)
+
