@@ -21,4 +21,30 @@ for line in f:
             calibration += solution
             break
 print(calibration)
-        
+
+#part 2
+from itertools import combinations_with_replacement
+
+f = open('trial')
+
+calibration = 0 
+for line in f:
+    split = line.strip().split(' ')
+    solution = int(split[0][:-1])
+    perm = (combinations_with_replacement(['+','*','||','+','*','||','+','*','||','+','*','||','+','*','||','+','*','||','+','*','||'],len(split)-2))
+    output = set(map(lambda x: tuple((x)),perm))
+    for com in output:
+        x = 0
+        total = int(split[x+1])
+        while x < len(com):
+            if com[x] == '+':
+                total += int(split[x+2])
+            elif com[x] == '*':
+                total = total * int(split[x+2])
+            else:
+                total = int(str(total)+split[x+2])
+            x += 1 
+        if total == solution:
+            calibration += solution
+            break
+print(calibration)
