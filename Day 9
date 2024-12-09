@@ -1,0 +1,34 @@
+f = open('code')
+content = f.read()
+new = []
+x = 0 
+num = 0
+while x < len(content):
+    if x ==  0 or x%2 ==0:
+        rep = 0
+        while rep < int(content[x]):
+            new.append(num)
+            rep += 1
+        num += 1
+    else:
+        rep = 0
+        while rep < int(content[x]):
+            new.append('x')
+            rep += 1
+    x +=1
+catchsum = 0
+for index, num in enumerate(new):
+    if num == 'x':
+        new.pop(index)
+        times = 0
+        while times < 50:
+            if new[-1] != 'x':
+                new.insert(index,new[-1])
+                new.pop(-1)
+                break
+            else:
+                new.pop(-1)
+            times += 1 
+for index, x in enumerate(new):
+    catchsum += index *x
+print(catchsum)
