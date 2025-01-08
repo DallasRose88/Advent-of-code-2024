@@ -1,0 +1,52 @@
+day 9.2
+f = open('trial')
+content = f.read()
+new = []
+x = 0 
+num = 0
+while x < len(content):
+    if x ==  0 or x%2 ==0:
+        rep = 0
+        while rep < int(content[x]):
+            new.append(num)
+            rep += 1
+        num += 1
+    else:
+        rep = 0
+        while rep < int(content[x]):
+            new.append('x')
+            rep += 1
+    x +=1
+print(new)
+catchsum = 0
+start = 9
+place = new.index(start)
+
+while start > 0:
+    count = new.count(start)
+    for index, num in enumerate(new):
+        ind = index
+        if num == 'x':
+            print(index)
+            times = 1 
+            a = index 
+            while times <= count:
+                if new[a] == 'x':
+                    times += 1 
+                    a += 1 
+                else:
+                    break
+            if times == count and place > index:
+                t = 0
+                while t < count:
+                    print(new, place, index, ind)
+                    new[(index-count)+t], new[place+t] = new[place+t], new[(index-count)+t]
+                    t += 1 
+                
+    start -= 1
+
+for index, x in enumerate(new):
+    if x != 'x':
+        catchsum += index *x
+print(catchsum)
+print(new)
