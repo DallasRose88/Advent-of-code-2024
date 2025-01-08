@@ -1,4 +1,4 @@
-f = open('code')
+f = open('trial')
 content = f.read()
 new = []
 x = 0 
@@ -17,18 +17,16 @@ while x < len(content):
             rep += 1
     x +=1
 catchsum = 0
+start = len(new)-1
 for index, num in enumerate(new):
     if num == 'x':
-        new.pop(index)
-        times = 0
-        while times < 50:
-            if new[-1] != 'x':
-                new.insert(index,new[-1])
-                new.pop(-1)
-                break
+        while start > 0:
+            if new[start] != 'x' and start > index:
+                new[index], new[start] = new[start], new[index]
+                break 
             else:
-                new.pop(-1)
-            times += 1 
+                start -= 1 
 for index, x in enumerate(new):
-    catchsum += index *x
+    if x != 'x':
+        catchsum += index *x
 print(catchsum)
